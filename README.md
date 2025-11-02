@@ -17,7 +17,11 @@ A secure Flask web app themed around Halloween, demonstrating:
 ## 🧠 Technologies
 Flask · SQLite · Werkzeug · Jinja2 · HTML/CSS
 
+## Live Demo
+https://halloween-cryptic-wallet.vercel.app/login
+
 ## ⚙️ Run Locally
 ```bash
 pip install -r requirements.txt
 python app.py
+

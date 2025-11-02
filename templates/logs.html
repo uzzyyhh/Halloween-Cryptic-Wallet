@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Logs | Halloween Crypto Wallet{% endblock %}
+
+{% block content %}
+<section class="dashboard">
+    <h2>🪶 Activity Logs</h2>
+
+    {% if logs %}
+    <table class="transactions">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Action</th>
+                <th>Detail</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+            <tr>
+                <td>{{ log.id }}</td>
+                <td>{{ log.action }}</td>
+                <td>{{ log.detail }}</td>
+                <td>{{ log.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No spooky activity yet!</p>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Halloween Crypto Wallet{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='pumpkin-icon.png') }}" type="image/png">
+</head>
+<body>
+    {% if g.user %}
+    <header class="navbar">
+        <div class="nav-left">
+            <img src="{{ url_for('static', filename='pumpkin-icon.png') }}" alt="Pumpkin" class="nav-logo">
+            <h1 class="nav-title">Halloween Crypto Wallet</h1>
+        </div>
+
+        <nav class="nav-links">
+            <a href="{{ url_for('dashboard') }}" class="nav-item {% if request.path == '/dashboard' %}active{% endif %}">Dashboard</a>
+            <a href="{{ url_for('transfer') }}" class="nav-item {% if request.path == '/transfer' %}active{% endif %}">Transfer</a>
+            <a href="{{ url_for('profile') }}" class="nav-item {% if request.path == '/profile' %}active{% endif %}">Profile</a>
+            <a href="{{ url_for('logs') }}" class="nav-item {% if request.path == '/logs' %}active{% endif %}">Logs</a>
+            <a href="{{ url_for('logout') }}" class="nav-item logout">Logout</a>
+        </nav>
+    </header>
+    {% endif %}
+
+    <main class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+
+        {% if g.user and request.path not in ['/login', '/dashboard', '/'] %}
+        <div class="back-btn-container">
+            <a href="{{ url_for('dashboard') }}" class="btn-secondary">Back to Dashboard</a>
+        </div>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>© 2025 Halloween Crypto Wallet | <em>To err is human, to haunt is divine.</em></p>
+    </footer>
+
+    <!-- === Spooky Session Timeout Modal === -->
+    <div id="sessionModal" class="session-modal hidden">
+        <div class="session-modal-content">
+            <img src="{{ url_for('static', filename='pumpkin-icon.png') }}" alt="Pumpkin" class="pumpkin-icon">
+            <h2>💀 Session Expired!</h2>
+            <p>Your crypt session has vanished into the mist...<br>Please log in again to reawaken it.</p>
+            <button onclick="window.location.href='/login'" class="btn-primary">Back to Login</button>
+        </div>
+    </div>
+
+    <!-- === JS Script === -->
+    <script>
+    // ========== Input Length Warning ==========
+    document.querySelectorAll('input[maxlength]').forEach(el => {
+        el.addEventListener('input', function() {
+            if (this.value.length >= this.maxLength) {
+                alert('Maximum length reached: ' + this.maxLength + ' characters.');
+            }
+        });
+    });
+
+    // ========== Idle Timeout Detection ==========
+    let idleTime = 0;
+    const idleLimit = 5 * 60 * 1000; // 5 minutes
+
+    function resetTimer() { idleTime = 0; }
+
+    function showSessionModal() {
+        const modal = document.getElementById('sessionModal');
+        if (modal) {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                window.location.href = '/logout';
+            }, 4000); // redirect after 4 seconds
+        }
+    }
+
+    function checkIdle() {
+        idleTime += 1000;
+        if (idleTime >= idleLimit && window.location.pathname !== '/login') {
+            showSessionModal();
+        }
+    }
+
+    setInterval(checkIdle, 1000);
+    ['mousemove', 'keypress', 'click', 'scroll'].forEach(evt =>
+        window.addEventListener(evt, resetTimer));
+    </script>
+</body>
+</html>

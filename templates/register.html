@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Register | Halloween Crypto Wallet{% endblock %}
+
+{% block content %}
+<section class="login-section">
+    <div class="login-card">
+        <img src="{{ url_for('static', filename='pumpkin-icon.png') }}" alt="Pumpkin Logo" class="pumpkin">
+        <h2>Summon a New Account 🕯️</h2>
+
+        <form method="POST" class="login-form">
+            <label for="username">Username</label>
+            <input type="text" name="username" placeholder="Enter your haunting name" required>
+
+            <label for="email">Email</label>
+            <input type="email" name="email" placeholder="Your ghostly email" required>
+
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Secret spell" required>
+
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" name="confirm_password" placeholder="Repeat your spell" required>
+
+            <button type="submit" class="btn-primary">Create Account</button>
+        </form>
+
+        <p class="register-link">
+            Already among the living? <a href="{{ url_for('login') }}">Enter the Crypt</a>
+        </p>
+    </div>
+</section>
+{% endblock %}

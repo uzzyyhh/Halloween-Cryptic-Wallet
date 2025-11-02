@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Transfer | Halloween Crypto Wallet{% endblock %}
+
+{% block content %}
+<section class="login-section">
+    <div class="login-card">
+        <h2>Send a Haunted Transaction 👻</h2>
+
+        <form method="POST" class="login-form">
+            <label for="recipient">Recipient</label>
+            <input type="text" name="recipient" placeholder="Whose vault to haunt?" required>
+
+            <label for="amount">Amount ($)</label>
+            <input type="number" name="amount" step="0.01" placeholder="Enter cursed amount" required>
+
+            <label for="note">Note</label>
+            <textarea name="note" placeholder="Your mysterious message..." required></textarea>
+
+            <button type="submit" class="btn-primary">Send</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,457 @@
+/* ===========================================================
+   HALLOWEEN CRYPTO WALLET – STYLESHEET
+   Author: Muhammad Usman Nadeem
+   Theme: Spooky Orange-Black Halloween
+   =========================================================== */
+
+/* -----------------------------------------------------------
+   GLOBAL BASE STYLES
+----------------------------------------------------------- */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background: #111;
+    color: #eee;
+}
+
+main {
+    animation: fadeIn 1s ease-in;
+}
+
+footer {
+    padding: 12px 0;
+    text-align: center;
+    color: #888;
+}
+
+/* -----------------------------------------------------------
+   HEADER (LEGACY STRUCTURE SUPPORT)
+----------------------------------------------------------- */
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 20px;
+    background: #1a1a1a;
+    border-bottom: 1px solid #222;
+}
+
+.logo {
+    width: 48px;
+    height: 48px;
+}
+
+header h1 {
+    font-family: 'Creepster', cursive;
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+/* -----------------------------------------------------------
+   NAVIGATION BAR (UPDATED)
+----------------------------------------------------------- */
+.navbar {
+    background: linear-gradient(90deg, #000000 0%, #1a0b00 100%);
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ff7518;
+    box-shadow: 0 2px 10px rgba(255, 117, 24, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.nav-logo {
+    width: 38px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.nav-title {
+    font-family: 'Creepster', cursive;
+    font-size: 1.6rem;
+    color: #ff7518;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: #ffb347;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #ff7518;
+    transition: width 0.3s;
+}
+
+.nav-item:hover::after,
+.nav-item.active::after {
+    width: 100%;
+}
+
+.nav-item:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #ff7518;
+}
+
+.nav-item.logout {
+    background: #ff7518;
+    color: black;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-item.logout:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #ff7518;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem;
+        margin-top: 0.4rem;
+    }
+
+    .nav-title {
+        font-size: 1.3rem;
+    }
+
+    .nav-logo {
+        width: 32px;
+    }
+}
+
+/* -----------------------------------------------------------
+   GLOBAL ELEMENT STYLES
+----------------------------------------------------------- */
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #333;
+    background: #0f0f0f;
+    color: #fff;
+}
+
+textarea {
+    resize: none;
+    min-height: 80px;
+    border: 1px solid #ff7518;
+    padding: 0.6rem;
+    background-color: #1e1e1e;
+    transition: 0.3s;
+}
+
+textarea:focus {
+    box-shadow: 0 0 10px #ff7518;
+}
+
+/* -----------------------------------------------------------
+   BUTTONS
+----------------------------------------------------------- */
+button,
+.btn {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background: #ff6;
+    color: #111;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, #ff7518, #ffb347);
+    border: none;
+    color: black;
+    font-weight: bold;
+    padding: 0.8rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #ff7518;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid #ff7518;
+    color: #ff7518;
+    font-weight: bold;
+    padding: 0.7rem 1.2rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: #ff7518;
+    color: black;
+    box-shadow: 0 0 15px #ff7518;
+}
+
+/* -----------------------------------------------------------
+   ALERTS (FLASH MESSAGES)
+----------------------------------------------------------- */
+.alert {
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+}
+
+.alert-error {
+    background: #3a0b0b;
+    color: #ffb3b3;
+    border: 1px solid #ff3333;
+    box-shadow: 0 0 10px #ff333340;
+}
+
+.alert-success {
+    background: #163a16;
+    color: #b3ffb3;
+    border: 1px solid #33ff33;
+    box-shadow: 0 0 10px #33ff3340;
+}
+
+/* -----------------------------------------------------------
+   LOGIN & REGISTER SECTIONS
+----------------------------------------------------------- */
+.login-section {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("../static/halloween-bg.jpg") center/cover no-repeat;
+}
+
+.login-card {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #ff7518;
+    border-radius: 20px;
+    padding: 2.5rem 3rem;
+    width: 380px;
+    text-align: center;
+    box-shadow: 0 0 30px #ff751870;
+    animation: fadeIn 1s ease-in;
+}
+
+.login-card h2 {
+    font-family: 'Creepster', cursive;
+    color: #ff7518;
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+}
+
+.login-card .pumpkin {
+    width: 70px;
+    animation: float 3s ease-in-out infinite;
+    margin-bottom: 0.5rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.login-form label {
+    color: #ffb347;
+    text-align: left;
+    font-weight: bold;
+}
+
+.login-form input {
+    padding: 0.7rem;
+    border-radius: 10px;
+    border: 1px solid #ff7518;
+    background-color: #1e1e1e;
+    color: #fff;
+    transition: 0.3s ease;
+}
+
+.login-form input:focus {
+    outline: none;
+    box-shadow: 0 0 10px #ff7518;
+}
+
+.register-link {
+    margin-top: 1.5rem;
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.register-link a {
+    color: #ffb347;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* -----------------------------------------------------------
+   DASHBOARD, TABLES & PROFILE
+----------------------------------------------------------- */
+.dashboard {
+    padding: 2rem;
+    text-align: center;
+}
+
+.dashboard h2,
+.dashboard h3 {
+    font-family: 'Creepster', cursive;
+    color: #ff7518;
+}
+
+.actions {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.transactions {
+    margin: 1.5rem auto;
+    border-collapse: collapse;
+    width: 90%;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.transactions th,
+.transactions td {
+    padding: 0.8rem 1rem;
+    color: #fff;
+    border-bottom: 1px solid #ff7518;
+    text-align: left;
+}
+
+.transactions th {
+    background: #ff7518;
+    color: black;
+}
+
+.transactions tr:nth-child(even) {
+    background: rgba(255, 117, 24, 0.1);
+}
+
+/* -----------------------------------------------------------
+   ANIMATIONS
+----------------------------------------------------------- */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==== SESSION EXPIRED MODAL ==== */
+.session-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.4s ease;
+}
+
+.session-modal.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.session-modal-content {
+    background: #1a0b00;
+    border: 2px solid #ff7518;
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    color: #ffb347;
+    width: 380px;
+    animation: fadeIn 1s ease;
+    box-shadow: 0 0 30px #ff751850;
+}
+
+.session-modal-content h2 {
+    font-family: 'Creepster', cursive;
+    color: #ff7518;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+.session-modal-content p {
+    font-size: 1rem;
+    color: #ffcc80;
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
+}
+
+.session-modal-content .pumpkin-icon {
+    width: 70px;
+    animation: float 3s ease-in-out infinite;
+    margin-bottom: 1rem;
+}
+
+/* Reuse existing .btn-primary */
+.session-modal .btn-primary {
+    background: linear-gradient(90deg, #ff7518, #ffb347);
+    border: none;
+    color: black;
+    font-weight: bold;
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.session-modal .btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #ff7518;
+}
